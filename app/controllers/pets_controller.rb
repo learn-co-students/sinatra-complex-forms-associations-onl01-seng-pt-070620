@@ -18,10 +18,9 @@ class PetsController < ApplicationController
       @owner = Owner.create(params[:pet][:owner]["name"])
       @pet.build.owner = @owner
       # method 2: direct assigning
-      @owner.owner = Owner.create(params[:pet][:owner]["name"])
-      @pet.save
+      @pet.owner = Owner.create(params[:pet][:owner]["name"])
     end 
-   
+      @pet.save
       redirect to "pets/#{@pet.id}"
     end
 
