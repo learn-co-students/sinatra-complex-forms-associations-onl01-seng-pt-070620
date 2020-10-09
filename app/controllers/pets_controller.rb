@@ -11,13 +11,19 @@ class PetsController < ApplicationController
   end
 
   post '/pets' do 
-    @pets = Pet.create(params[:pet])
-    if !params["owner"]["name"].empty?
-      @pet.owner = Owner.create(name: params["owner"]["name"])
+    @pet = Pet.create(params[:pet])
+    # how to create association pet and owner?
+    if !params[:pet][:owner]["name"].empty?
+      # method 1: build method to associate
+      @owner = Owner.create(params[:pet][:owner]["name"])
+      @pet.build.owner = @owner
+      # method 2: direct assigning
+      @owner.owner = Owner.create(params[:pet][:owner]["name"])
       @pet.save
     end 
-    redirect to "pets/#{@pet.id}"
-  end
+   
+      redirect to "pets/#{@pet.id}"
+    end
 
   get '/pets/:id' do 
     @pet = Pet.find(params[:id])
@@ -31,8 +37,8 @@ class PetsController < ApplicationController
   end 
 
   patch '/pets/:id' do 
-    if !params[:pet].keys.include("owner_ids")
-      params[:pet]["owner_ids"] = []
+    if !params[:pet].keys.include("owner_id")
+      params[:pet]["owner_id"] = []
     end 
 
     @pet = Pet.find(params[:id])
