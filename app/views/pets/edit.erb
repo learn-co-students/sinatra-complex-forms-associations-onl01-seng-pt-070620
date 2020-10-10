@@ -6,14 +6,14 @@
     <input id="hidden" type="hidden" name="_method" value="patch">
     <label>Edit the Pet's Name:</label>
     <br>
-    <input type="text" id="pet_name" name="pet[name]" value="<%= @pet.name %>">
+    <input type="text" id='pet_name' name="pet[name]" value="<%= @pet.name %>">
  
     <br>
     <p>Select an existing owner or create a new one below.</p>
  
     <h3>Existing Owners</h3>
     <% @owners.each do |owner|%>
-    <input type="radio" id="pet_name" name="pet[owner_id][]" id="<%= owner.id %>" value="<%= owner.id%>" ><%= 'checked' if @pet.owner.include?(owner) %><%= owner.name%><br>
+    <input type="radio" name="pet[owner_id][]" id="<%= owner.id %>" value="<%= owner.id%>" ><%= 'checked' if @pet.owner.include?(owner) %><%= owner.name%><br>
     <% end %>
     <br>
 
