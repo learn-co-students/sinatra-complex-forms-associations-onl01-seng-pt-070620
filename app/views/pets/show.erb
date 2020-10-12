@@ -1,1 +1,7 @@
-show.erb
+<h1><%=@pets.name%></h1>
+<h4>Owners:</h4>
+<ul>
+  <%@pets.owner.each do |pet|%>
+  <li><%=owners.name%></li>
+  <%end%>
+</ul>
