@@ -8,8 +8,8 @@
   <input type="text" name="pet[name]" id="pet_name">
 
   <h3>Existing Owners</h3>
-  <% @owners.each do |own| %>
-    <input type="radio" name="owner[name][]" id="<%= own.id %>" value="<%= own.id %>"><%= own.name %><br>
+  <% @owners.each do |owner| %>
+    <input type="radio" name="pet[owner_id]" id="<%= owner.id %>" value="<%= owner.id %>"><%= owner.name %><br>
   <% end %>
   <br>
   
